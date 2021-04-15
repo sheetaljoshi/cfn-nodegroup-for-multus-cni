@@ -12,6 +12,9 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
 
+## About This Branch
+- IPv6 support of multus interface is added to CFN and Lambda function. 
+
 ## Pre-requisites
 - This CFN assumes user already has created VPC, security groups and subnets (even for subnets of multus interfaces). 
 - Current Lambda supports maximum 4 additional multus subnets (besides with a default K8s network). But user can modify to increase the number of multus interfaces. 
@@ -76,8 +79,7 @@ From the baseline CFN for self-managed node group, below functions are added;
      - **Note** If the application requires DPDK interface for the multus interface, then we can use **host-device CNI plugin** instead of ipvlan CNI plugin. 
  
 ## List of CFNs
-Based on required number of multus subnets, user can use different CFNs in this GitHub with same Lambda function.
-- amazon-eks-nodegroup-multus-1ENI.yaml : 1 multus subnet (1 default k8s network and 1 additional multus network)
-- amazon-eks-nodegroup-multus-2ENIs.yaml : 2 multus subnets
-- amazon-eks-nodegroup-multus-3ENIs.yaml : 3 multus subnets
-- amazon-eks-nodegroup-multus-4ENIs.yaml : 4 multus subnets
+Based on required number of multus subnets, user can use base CFN with putting multiple Multus Subnet options such as MultusSubnet1, MultusSubnet2.. and MultusSecurityGroup1, MultusSecurityGroup2...].
+- amazon-eks-nodegroup-multus-1ENI.yaml : base template with 1 multus subnet (1 default k8s network and 1 additional multus network)
+- amazon-eks-nodegroup-multus-4ENIs.yaml : example for 4 multus subnets
+
